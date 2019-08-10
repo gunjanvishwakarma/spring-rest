@@ -2,6 +2,7 @@ package com.gunjan.rest.webservices.restfulwebservices.user;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -34,10 +35,10 @@ public class UserResource
     @GetMapping(path = "/users/{id}")
     public EntityModel<User> retrieveUser(@PathVariable int id)
     {
-        User user = userRepository.getOne(id);
-        if(user == null) throw new UserNotFoundException("User does not exist: " + id);
+        Optional<User> user = userRepository.findById(id);
+        if(!user.isPresent()) throw new UserNotFoundException("User does not exist: " + id);
     
-        EntityModel<User> resource = new EntityModel<User>(user);
+        EntityModel<User> resource = new EntityModel<User>(user.get());
     
         ControllerLinkBuilder controllerLinkBuilder = ControllerLinkBuilder.linkTo(ControllerLinkBuilder.methodOn(this.getClass()).retrieveAllUsers());
     
