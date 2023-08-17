@@ -1,5 +1,3 @@
-Certainly! Here's the content converted into a README file format:
-
 # Spring Boot RESTful Web Services Annotations
 
 This README provides an overview of commonly used annotations in Spring Boot for creating RESTful web services. These annotations enable you to build robust and efficient APIs.
